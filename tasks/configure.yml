@@ -1,0 +1,58 @@
+---
+- name: Configure aws profile
+  block:
+    - name: Create AWS profile folder
+      file:
+        path: "{{ cwa_agent_profile_path }}"
+        state: directory
+        owner: root
+        group: root
+        mode: 0644
+    - name: Deploy AWS profile config file
+      template:
+        src: profile/config.j2
+        dest: "{{ cwa_agent_profile_config_file }}"
+        owner: root
+        group: root
+        mode: 0644
+        force: true
+    - name: Deploy AWS profile credentials file
+      template:
+        src: profile/credentials.j2
+        dest: "{{ cwa_agent_profile_credentials_file }}"
+        owner: root
+        group: root
+        mode: 0644
+        force: true
+  when: cwa_use_credentials
+
+- name: Deploy {{ cwa_package }} common configuration file
+  template:
+    src: agent/common-config.toml.j2
+    dest: "{{ cwa_common_config_file }}"
+    force: true
+  notify: Reload {{ cwa_package }}
+
+- name: Deploy {{ cwa_package }} logrotate configuration file
+  template:
+    src: logrotate/aws-cwa.j2
+    dest: "{{ cwa_logrotate_config_file }}"
+    force: true
+  notify: Reload {{ cwa_logrotate_daemon }}
+
+# Use configuration file from template
+- name: Deploy {{ cwa_package }} agent configuration file from default template
+  template:
+    src: agent/amazon-cloudwatch-agent.json.j2
+    dest: "{{ cwa_agent_config_file }}"
+    force: true
+  notify: Reload {{ cwa_package }}
+  when: cwa_use_conf_json_template
+
+# Use custom file from file content
+- name: Deploy {{ cwa_package }} agent custom configuration file from file content
+  copy:
+    content: "{{ cwa_conf_json_file_content | to_nice_json }}"
+    dest: "{{ cwa_agent_config_file }}"
+  notify: Reload {{ cwa_package }}
+  when: not cwa_use_conf_json_template

@@ -1,0 +1,28 @@
+---
+awscli_package: amazon-cloudwatch-agent
+awscli_install_path: /opt/aws/amazon-cloudwatch-agent
+awscli_agent_ctl: /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl
+awscli_package_gpg: https://s3.amazonaws.com/amazoncloudwatch-agent/assets/amazon-cloudwatch-agent.gpg
+awscli_package_gpg_id: D58167303B789C72
+
+awscli_common_config_file: "{{ awscli_install_path }}/etc/common-config.toml"
+awscli_agent_config_file: "{{ awscli_install_path }}/etc/amazon-cloudwatch-agent.json"
+awscli_agent_log_file: "{{ awscli_install_path }}/logs/amazon-cloudwatch-agent.log"
+
+awscli_logrotate_config_file: /etc/logrotate.d/aws-cwa
+awscli_logrotate_daemon: logrotate
+
+awscli_agent_profile_path: /root/.aws
+awscli_agent_profile_config_file: "{{ awscli_agent_profile_path }}/config"
+awscli_agent_profile_credentials_file: "{{ awscli_agent_profile_path }}/credentials"
+
+awscli_dependencies_packages:
+  - collectd
+
+awscli_global_downloads_timeout: 120
+awscli_temp_path: /tmp
+
+# Conditional variables
+awscli_use_credentials: "{{ true if awscli_agent_mode == 'onPremise' else false }}"
+awscli_use_proxy: "{{ true if awscli_http_proxy is defined and awscli_http_proxy|length > 0 else false }}"
+awscli_use_conf_json_template: "{{ false if awscli_conf_json_file_content is defined and awscli_conf_json_file_content|length > 0 else true }}"

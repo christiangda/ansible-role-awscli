@@ -1,0 +1,47 @@
+---
+galaxy_info:
+  role_name: amazon_cli
+  author: Christian González Di Antonio
+  description: Ansible Role for Amazon Command Line Interface (awscli)
+  license: license GPLv3
+  company: No Company
+  min_ansible_version: 2.5
+
+  platforms:
+    - name: EL
+      versions:
+        - 6
+        - 7
+    - name: Amazon
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - buster
+        - jessie
+        - sid
+        - stretch
+    - name: Ubuntu
+      version:
+        - trusty
+        - xenial
+        - bionic
+        - cuttlefish
+
+  galaxy_tags:
+    - aws
+    - tool
+    - redhat
+    - system
+    - utilities
+    - amazon
+    - linux
+    - ubuntu
+    - debian
+    - centos
+    - cloud
+    - cli
+    - metrics
+    - command
+
+dependencies: []
