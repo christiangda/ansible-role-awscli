@@ -41,5 +41,5 @@ galaxy_info:
     - metrics
     - command
 
-dependencies: 
+dependencies:
   - christiangda.epel_repo

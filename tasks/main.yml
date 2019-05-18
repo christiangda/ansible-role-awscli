@@ -20,22 +20,22 @@
     - "main.yml"
   when: >
     ansible_os_family == 'Debian' and
-    ansible_distribution == 'Debian' and 
+    ansible_distribution == 'Debian' and
     ansible_distribution_major_version == '8'
   tags:
     - include-debian-8-vars
 
-- name: Include variables for Debian 9 distribution
+- name: Include variables for Debian distribution (not jessie)
   include_vars: "{{ item }}"
   with_first_found:
-    - "{{ ansible_distribution|lower }}-{{ ansible_distribution_major_version }}.yml"
+    - "{{ ansible_distribution|lower }}.yml"
     - "main.yml"
   when: >
     ansible_os_family == 'Debian' and
-    ansible_distribution == 'Debian' and 
-    ansible_distribution_major_version == '9'
+    ansible_distribution == 'Debian' and not
+    ansible_distribution_major_version == '8'
   tags:
-    - include-debian-9-vars
+    - include-debian-vars
 
 - name: Include variables for Ubuntu distribution
   include_vars: "{{ item }}"
@@ -70,16 +70,16 @@
   include_tasks: "install-{{ ansible_distribution|lower }}-{{ ansible_distribution_major_version }}.yml"
   when: >
     ansible_os_family == 'Debian' and
-    ansible_distribution == 'Debian' and 
+    ansible_distribution == 'Debian' and
     ansible_distribution_major_version == '8'
   tags:
     - install-debian-8
 
-- name: Include tasks for installation on Debian 9 distribution
-  include_tasks: "install-{{ ansible_distribution|lower }}-{{ ansible_distribution_major_version }}.yml"
+- name: Include tasks for installation on Debian distribution (not jessie)
+  include_tasks: "install-{{ ansible_distribution|lower }}.yml"
   when: >
     ansible_os_family == 'Debian' and
-    ansible_distribution == 'Debian' and 
-    ansible_distribution_major_version == '9'
+    ansible_distribution == 'Debian' and not
+    ansible_distribution_major_version == '8'
   tags:
-    - install-debian-9
+    - install-debian
