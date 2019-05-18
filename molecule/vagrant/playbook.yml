@@ -24,4 +24,4 @@
       changed_when: false
 
   roles:
-    - role: christiangda.amazon_cloudwatch_agent
+    - role: christiangda.amazon_cli

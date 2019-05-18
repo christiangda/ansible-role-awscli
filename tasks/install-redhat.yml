@@ -1,60 +1,20 @@
 ---
-- name: Add {{ cwa_package }} key
-  rpm_key:
-    state: present
-    key: "{{ cwa_package_gpg }}"
-  tags:
-    - add-key
-    - download
-    - install
-
-- name: Download {{ cwa_package }}.rpm.sig
-  get_url:
-    url: "{{ cwa_package_signature }}"
-    dest: "{{ cwa_temp_path }}/{{ cwa_package }}.rpm.sig"
-    timeout: "{{ cwa_global_downloads_timeout }}"
-  tags:
-    - download-signature
-    - verify-signature
-    - download
-    - install
-
-- name: Download {{ cwa_package }}.rpm
-  get_url:
-    url: "{{ cwa_package_url }}"
-    dest: "{{ cwa_temp_path }}/{{ cwa_package }}.rpm"
-    timeout: "{{ cwa_global_downloads_timeout }}"
-  tags:
-    - download
-    - verify-signature
-    - install
-
-- name: Verify {{ cwa_package }} package signature
-  command: gpg --verify {{ cwa_package }}.rpm.sig {{ cwa_package }}.rpm
-  register: verified_sig
-  failed_when: "'BAD' in verified_sig.stderr"
-  changed_when: false
-  args:
-    chdir: "{{ cwa_temp_path }}"
-  tags:
-    - verify-signature
-    - install
-
-- name: Install {{ cwa_package }} dependencies
+- name: Install {{ cli_package }} dependencies
   block:
     - name: Include role christiangda.epel_repo from Galaxy
       include_role:
         name: christiangda.epel_repo
-    - name: Install "{{ cwa_dependencies_packages }}" dependency
+    - name: Install "{{ cli_dependencies_packages }}" dependencies
       yum:
-        name: "{{ cwa_dependencies_packages }}"
+        name: "{{ cli_dependencies_packages }}"
         state: present
       tags:
         - install
 
-- name: Install {{ cwa_package }}.rpm
-  yum:
-    name: "{{ cwa_temp_path }}/{{ cwa_package }}.rpm"
+- name: Install {{ cli_package }}
+  pip:
+    name: "{{ cli_package }}"
     state: present
   tags:
     - install
+
