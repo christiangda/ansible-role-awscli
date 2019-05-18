@@ -1,6 +1,6 @@
 ---
 galaxy_info:
-  role_name: amazon_cli
+  role_name: awscli
   author: Christian González Di Antonio
   description: Ansible Role for AWS Command Line Interface (awscli)
   license: license GPLv3

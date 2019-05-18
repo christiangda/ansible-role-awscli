@@ -1,7 +1,7 @@
-# Ansible Role: christiangda.amazon_cli
+# Ansible Role: christiangda.awscli
 
-[![Build Status](https://travis-ci.org/christiangda/ansible-role-amazon-cli.svg?branch=master)](https://travis-ci.org/christiangda/ansible-role-amazon-cli)
-[![Ansible Role](https://img.shields.io/ansible/role/39191.svg)](https://galaxy.ansible.com/christiangda/amazon_cli)
+[![Build Status](https://travis-ci.org/christiangda/ansible-role-awscli.svg?branch=master)](https://travis-ci.org/christiangda/ansible-role-awscli)
+[![Ansible Role](https://img.shields.io/ansible/role/39191.svg)](https://galaxy.ansible.com/christiangda/awscli)
 
 This role [Install AWS Command Line Interface (awscli)](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)
 
@@ -47,7 +47,7 @@ None
 - hosts: servers
     gather_facts: True
     roles:
-    - role: christiangda.amazon_cli
+    - role: christiangda.awscli
 ```
 
 ## Development / Contributing
@@ -82,9 +82,9 @@ pip install molecule[vagrant]
 **Clone the role repository and create symbolic link**
 
 ```bash
-git clone https://github.com/christiangda/ansible-role-amazon-cli.git
-ln -s ansible-role-amazon-cli christiangda.amazon_cli
-cd christiangda.amazon_cli
+git clone https://github.com/christiangda/ansible-role-awscli.git
+ln -s ansible-role-awscli christiangda.awscli
+cd christiangda.awscli
 ```
 
 **Execute the test**

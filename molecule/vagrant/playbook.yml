@@ -24,4 +24,4 @@
       changed_when: false
 
   roles:
-    - role: christiangda.amazon_cli
+    - role: christiangda.awscli

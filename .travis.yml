@@ -12,8 +12,8 @@ branches:
 
 env:
   global:
-    - GITHUB_ROLE_NAME="ansible-role-amazon-cli"
-    - GALAXY_ROLE_NAME="christiangda.amazon_cli"
+    - GITHUB_ROLE_NAME="ansible-role-awscli"
+    - GALAXY_ROLE_NAME="christiangda.awscli"
   matrix:
     #- ANSIBLE_VERSION=">=2.8,<2.9"
     - ANSIBLE_VERSION=">=2.7,<2.8"

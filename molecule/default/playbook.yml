@@ -17,4 +17,4 @@
           ansible_distribution == 'RedHat' or
           ansible_distribution == 'Amazon'
         )
-    - role: christiangda.amazon_cli
+    - role: christiangda.awscli
