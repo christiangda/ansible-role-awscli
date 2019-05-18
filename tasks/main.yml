@@ -13,7 +13,7 @@
   tags:
     - include-redhat-vars
 
-- name: Include variables for Debian 8 distribution
+- name: Include variables for Debian jessie distribution
   include_vars: "{{ item }}"
   with_first_found:
     - "{{ ansible_distribution|lower }}-{{ ansible_distribution_major_version }}.yml"
@@ -48,7 +48,7 @@
   tags:
     - include-ubuntu-vars
 
-# Installation tasks
+# Include tasks
 - name: Include tasks for installation on RedHat/CentOS/ distribution
   include_tasks: "install-{{ ansible_os_family|lower }}.yml"
   when: >
@@ -66,7 +66,7 @@
   tags:
     - install-ubuntu
 
-- name: Include tasks for installation on Debian 8 distribution
+- name: Include tasks for installation on Debian jessie distribution
   include_tasks: "install-{{ ansible_distribution|lower }}-{{ ansible_distribution_major_version }}.yml"
   when: >
     ansible_os_family == 'Debian' and

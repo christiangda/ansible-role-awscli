@@ -1,7 +1,7 @@
 # Ansible Role: christiangda.awscli
 
 [![Build Status](https://travis-ci.org/christiangda/ansible-role-awscli.svg?branch=master)](https://travis-ci.org/christiangda/ansible-role-awscli)
-[![Ansible Role](https://img.shields.io/ansible/role/39191.svg)](https://galaxy.ansible.com/christiangda/awscli)
+[![Ansible Role](https://img.shields.io/ansible/role/40514.svg)](https://galaxy.ansible.com/christiangda/awscli)
 
 This role [Install AWS Command Line Interface (awscli)](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)
 
@@ -20,9 +20,9 @@ This role work on RedHat, CentOS, Debian and Ubuntu distributions
   * 6
   * 7
 * Ubuntu
-  * 14.04
-  * 16.04
-  * 18.10
+  * 14.XX
+  * 16.XX
+  * 18.XX
 * Debian
   * buster
   * jessie
