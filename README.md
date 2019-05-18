@@ -47,7 +47,7 @@ None
 - hosts: servers
     gather_facts: True
     roles:
-    - role: christiangda.awscli
+      - role: christiangda.awscli
 ```
 
 ## Development / Contributing
