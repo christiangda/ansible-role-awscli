@@ -15,7 +15,7 @@ env:
     - GITHUB_ROLE_NAME="ansible-role-awscli"
     - GALAXY_ROLE_NAME="christiangda.awscli"
   matrix:
-    #- ANSIBLE_VERSION=">=2.8,<2.9"
+    - ANSIBLE_VERSION=">=2.8.1,<2.9"
     - ANSIBLE_VERSION=">=2.7,<2.8"
     - ANSIBLE_VERSION=">=2.6,<2.7"
     - ANSIBLE_VERSION=">=2.5,<2.6"

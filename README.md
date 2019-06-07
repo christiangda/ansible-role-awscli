@@ -29,6 +29,8 @@ This role work on RedHat, CentOS, Debian and Ubuntu distributions
   * sid
   * stretch
 
+To see the compatibility matrix of Python vs. Ansible see the project [Travis-CI build matrix](https://travis-ci.org/christiangda/ansible-role-awscli)
+
 ## Role Variables
 
 None
