@@ -5,6 +5,7 @@
   args:
     warn: false
   register: is_epel_repo_installed
+  changed_when: false
   tags:
     - check-epel-repo
 
