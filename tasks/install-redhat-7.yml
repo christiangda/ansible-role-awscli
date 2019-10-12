@@ -1,0 +1,19 @@
+---
+- name: Install {{ cli_package }} dependencies
+  block:
+    - name: Include role christiangda.epel_repo from Galaxy
+      include_role:
+        name: christiangda.epel_repo
+    - name: Install "{{ cli_dependencies_packages }}" dependencies
+      yum:
+        name: "{{ cli_dependencies_packages }}"
+        state: present
+      tags:
+        - install
+
+- name: Install {{ cli_package }}
+  pip:
+    name: "{{ cli_package }}"
+    state: present
+  tags:
+    - install

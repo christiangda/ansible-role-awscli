@@ -16,18 +16,21 @@ This role work on RedHat, CentOS, Debian and Ubuntu distributions
 * RedHat
   * 6
   * 7
+  * 8
 * CentOS
   * 6
   * 7
+  * 8
 * Ubuntu
-  * 14.XX
-  * 16.XX
-  * 18.XX
+  * 14.*
+  * 16.*
+  * 18.*
+  * 19.*
 * Debian
-  * buster
-  * jessie
-  * sid
-  * stretch
+  * jessie (8)
+  * stretch (9)
+  * buster (10)
+  * sid (inestable)
 
 To see the compatibility matrix of Python vs. Ansible see the project [Travis-CI build matrix](https://travis-ci.org/christiangda/ansible-role-awscli)
 
@@ -70,6 +73,7 @@ source venv/bin/activate
 pip install pip --upgrade
 pip install ansible
 pip install molecule">=2.22rc1"
+pip install molecule[vagrant]
 pip install selinux
 pip install docker
 pip install pytest
@@ -100,6 +104,7 @@ source venv/bin/activate
 pip install pip --upgrade
 pip install ansible
 pip install molecule">=2.22rc1"
+pip install molecule[vagrant]
 pip install selinux
 pip install docker
 pip install pytest

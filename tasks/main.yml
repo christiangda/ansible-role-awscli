@@ -1,9 +1,9 @@
 ---
 # Include vars
-- name: Include variables for RedHat/CentOS distribution
+- name: Include variables for RedHat/CentOS
   include_vars: "{{ item }}"
   with_first_found:
-    - "{{ ansible_os_family|lower }}.yml"
+    - "{{ ansible_os_family|lower }}-{{ ansible_distribution_major_version }}.yml"
     - "main.yml"
   when: >
     ansible_os_family == 'RedHat' and (
@@ -13,7 +13,7 @@
   tags:
     - include-redhat-vars
 
-- name: Include variables for Debian jessie distribution
+- name: Include variables for Debian Jessie
   include_vars: "{{ item }}"
   with_first_found:
     - "{{ ansible_distribution|lower }}-{{ ansible_distribution_major_version }}.yml"
@@ -25,7 +25,7 @@
   tags:
     - include-debian-8-vars
 
-- name: Include variables for Debian distribution (not jessie)
+- name: Include variables for Debian (not Jessie)
   include_vars: "{{ item }}"
   with_first_found:
     - "{{ ansible_distribution|lower }}.yml"
@@ -37,7 +37,7 @@
   tags:
     - include-debian-vars
 
-- name: Include variables for Ubuntu distribution
+- name: Include variables for Ubuntu
   include_vars: "{{ item }}"
   with_first_found:
     - "{{ ansible_distribution|lower }}.yml"
@@ -49,8 +49,8 @@
     - include-ubuntu-vars
 
 # Include tasks
-- name: Include tasks for installation on RedHat/CentOS/ distribution
-  include_tasks: "install-{{ ansible_os_family|lower }}.yml"
+- name: Include tasks for installation on RedHat/CentOS
+  include_tasks: "install-{{ ansible_os_family|lower }}-{{ ansible_distribution_major_version }}.yml"
   when: >
     ansible_os_family == 'RedHat' and (
       ansible_distribution == 'CentOS' or
@@ -59,14 +59,14 @@
   tags:
     - include-redhat
 
-- name: Include tasks for installation on Ubuntu distribution
+- name: Include tasks for installation on Ubuntu
   include_tasks: "install-{{ ansible_distribution|lower }}.yml"
   when: >
     ansible_os_family == 'Debian' and ansible_distribution == 'Ubuntu'
   tags:
     - install-ubuntu
 
-- name: Include tasks for installation on Debian jessie distribution
+- name: Include tasks for installation on Debian Jessie
   include_tasks: "install-{{ ansible_distribution|lower }}-{{ ansible_distribution_major_version }}.yml"
   when: >
     ansible_os_family == 'Debian' and
@@ -75,7 +75,7 @@
   tags:
     - install-debian-8
 
-- name: Include tasks for installation on Debian distribution (not jessie)
+- name: Include tasks for installation on Debian (not Jessie)
   include_tasks: "install-{{ ansible_distribution|lower }}.yml"
   when: >
     ansible_os_family == 'Debian' and
