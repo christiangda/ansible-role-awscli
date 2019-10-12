@@ -43,5 +43,4 @@ galaxy_info:
     - command
     - awscli
 
-dependencies:
-  - christiangda.epel_repo
+dependencies: []

@@ -41,7 +41,7 @@ platforms:
   - name: debian-buster
     image: debian:buster
 
-    # inestable
+    # unstable
   - name: debian-sid
     image: debian:sid
 

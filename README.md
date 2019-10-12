@@ -3,9 +3,12 @@
 [![Build Status](https://travis-ci.org/christiangda/ansible-role-awscli.svg?branch=master)](https://travis-ci.org/christiangda/ansible-role-awscli)
 [![Ansible Role](https://img.shields.io/ansible/role/40514.svg)](https://galaxy.ansible.com/christiangda/awscli)
 
-This role [Install AWS Command Line Interface (awscli)](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)
+This role [install AWS Command Line Interface (awscli)](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)
+
+**NOTE:** This ROLE is a Work In Progress (WIP), so you need to take care of use this
 
 **Features:**
+
 * Installed using pip
 * ~~Allow configure profile (config and credentials)~~
 
@@ -30,7 +33,7 @@ This role work on RedHat, CentOS, Debian and Ubuntu distributions
   * jessie (8)
   * stretch (9)
   * buster (10)
-  * sid (inestable)
+  * sid (unstable)
 
 To see the compatibility matrix of Python vs. Ansible see the project [Travis-CI build matrix](https://travis-ci.org/christiangda/ansible-role-awscli)
 
@@ -40,19 +43,54 @@ None
 
 ## Dependencies
 
-* [christiangda.epel_repo](https://galaxy.ansible.com/christiangda/epel_repo) imported dynamically in the code when is used with Red Hat family, so you don't need to add this to your ansible playbook.
+* RedHat/CentOS
+  * 6/7 [EPEL Repository](https://fedoraproject.org/wiki/EPEL)
+  You need to enable EPEL repository, you could use my role: [christiangda.epel_repo](https://galaxy.ansible.com/christiangda/epel_repo) for this task.
+
+**NOTE:** RedHat/CentOS 8 doesn't need EPEL Repository to use this role.
 
 ## Example Playbook
 
 ### RedHat/CentOS, Ubuntu and Debian
 
-**Reading config file from JSON configuration file**
+When you have RedHat/CentOS 8 or Debian/Ubuntu target
+
+```yaml
+- hosts: redhat-8
+    gather_facts: True
+    roles:
+      - role: christiangda.awscli
+```
+
+When you have RedHat/CentOS 6/7 target
+
+```yaml
+- hosts: redhat-7
+    gather_facts: True
+    roles:
+      - role: christiangda.epel_repo
+      - role: christiangda.awscli
+```
+
+When you have multiples OS targets, install EPEL repository only in RedHat/CentOS 6/7
 
 ```yaml
 - hosts: servers
     gather_facts: True
     roles:
-      - role: christiangda.awscli
+    - role: christiangda.epel_repo
+      when: >
+        ansible_os_family == 'RedHat' and (
+          ansible_distribution == 'CentOS' or
+          ansible_distribution == 'RedHat'
+        )
+        and (
+          ansible_distribution_major_version == '6' or
+          ansible_distribution_major_version == '7'
+        )
+      changed_when: false
+    - role: christiangda.awscli
+
 ```
 
 ## Development / Contributing

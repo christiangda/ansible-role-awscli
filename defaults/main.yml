@@ -1,3 +1,1 @@
 ---
-# The path where you want to put configuration files for aws cli
-cli_path: ~/.aws
