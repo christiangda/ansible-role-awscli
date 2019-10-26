@@ -5,12 +5,9 @@
 
 This role [install AWS Command Line Interface (awscli)](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)
 
-**NOTE:** This ROLE is a Work In Progress (WIP), so you need to take care of use this
+**NOTE:**
 
-**Features:**
-
-* Installed using pip
-* ~~Allow configure profile (config and credentials)~~
+* This role does not allow to configure [AWS CLI profile (config and credentials)](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html), instead, it works together with the role [christiangda.awscli](https://galaxy.ansible.com/christiangda/awscli_configure) witch allow you configure it.
 
 ## Requirements
 
@@ -91,6 +88,31 @@ When you have multiples OS targets, install EPEL repository only in RedHat/CentO
       changed_when: false
     - role: christiangda.awscli
 
+```
+
+**When you have RedHat/CentOS 8 or Debian/Ubuntu target** and wants to use the role [christiangda.awscli](https://galaxy.ansible.com/christiangda/awscli)
+
+```yaml
+- hosts: redhat-8
+    gather_facts: True
+    roles:
+      - role: christiangda.awscli
+      - role: christiangda.awscli_configure
+        vars:
+          awscliconf_files:
+            credentials:
+              - default:
+                  aws_access_key_id: '12345679'
+                  aws_secret_access_key: '123456789'
+            config:
+              - default:
+                  region: us-west-2
+                  output: json
+              - profile development:
+                  role_arn: 'arn:aws:iam::123456789012:role/role-for-development'
+                  mfa_serial: 'arn:aws:iam::11111111111:mfa/christian.gonzalez'
+                  region: eu-west-1
+                  source_profile: default
 ```
 
 ## Development / Contributing
