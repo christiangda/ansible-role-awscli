@@ -5,7 +5,11 @@
 
 This role [install AWS Command Line Interface (awscli)](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)
 
-**NOTE:**
+The best wayt to install this role is using the command `ansible-galaxy install christiangda.awscli`, the Ansible Galaxy repository is [christiangda.awscli](https://galaxy.ansible.com/christiangda/awscli)
+
+The repository code is [https://github.com/christiangda/ansible-role-awscli](https://github.com/christiangda/ansible-role-awscli)
+
+**Notes:**
 
 * This role does not allow to configure [AWS CLI profile (config and credentials)](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html), instead, it works together with the role [christiangda.awscli](https://galaxy.ansible.com/christiangda/awscli_configure) witch allow you configure it.
 
@@ -44,7 +48,7 @@ None
   * 6/7 [EPEL Repository](https://fedoraproject.org/wiki/EPEL)
   You need to enable EPEL repository, you could use my role: [christiangda.epel_repo](https://galaxy.ansible.com/christiangda/epel_repo) for this task.
 
-**NOTE:** RedHat/CentOS 8 doesn't need EPEL Repository to use this role.
+**Note:** RedHat/CentOS 8 doesn't need EPEL Repository to use this role.
 
 ## Example Playbook
 
@@ -102,8 +106,8 @@ When you have multiples OS targets, install EPEL repository only in RedHat/CentO
           awscliconf_files:
             credentials:
               - default:
-                  aws_access_key_id: '12345679'
-                  aws_secret_access_key: '123456789'
+                  aws_access_key_id: 'AKIAIOSFODNN7EXAMPLE'
+                  aws_secret_access_key: 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'
             config:
               - default:
                   region: us-west-2
@@ -120,9 +124,9 @@ When you have multiples OS targets, install EPEL repository only in RedHat/CentO
 This role is tested using [Molecule](https://molecule.readthedocs.io/en/latest/) and was developed using
 [Python Virtual Environments](https://docs.python.org/3/tutorial/venv.html)
 
-**Prepare your environment**
+Prepare your environment
 
-**Python 3**
+* Python 3
 
 ```bash
 mkdir ansible-roles
@@ -132,7 +136,7 @@ python3 -m venv venv
 source venv/bin/activate
 pip install pip --upgrade
 pip install ansible
-pip install molecule">=2.22rc1"
+pip install molecule
 pip install molecule[vagrant]
 pip install selinux
 pip install docker
@@ -145,38 +149,7 @@ pip install yamllint
 pip install flake8
 ```
 
-**Python 2.7**
-
-Dependencies
-
-```bash
-sudo dnf install redhat-rpm-config
-sudo dnf install python-devel
-sudo dnf install libselinux-python
-```
-
-```bash
-mkdir ansible-roles
-cd ansible-roles/
-
-python2.7 -m virtualenv venv
-source venv/bin/activate
-pip install pip --upgrade
-pip install ansible
-pip install molecule">=2.22rc1"
-pip install molecule[vagrant]
-pip install selinux
-pip install docker
-pip install pytest
-pip install pytest-mock
-pip install pylint
-pip install rope
-pip install autopep8
-pip install yamllint
-pip install flake8
-```
-
-**Clone the role repository and create symbolic link**
+Clone the role repository and create symbolic link
 
 ```bash
 git clone https://github.com/christiangda/ansible-role-awscli.git
@@ -184,7 +157,7 @@ ln -s ansible-role-awscli christiangda.awscli
 cd christiangda.awscli
 ```
 
-**Execute the test**
+Execute the test
 
 Using docker in local
 
