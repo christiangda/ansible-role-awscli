@@ -6,6 +6,7 @@
 * fixed issue #1
 * improved support for Debian, added testing releases
 * improved molecule
+* migrated to Github Actions
 
 ## 1.0.0
 

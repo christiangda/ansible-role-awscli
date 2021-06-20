@@ -8,12 +8,6 @@ on:
     paths-ignore:
       - "**.md"
 
-  pull_request:
-    tags:
-      - [012].[0-9]+.[0-9]+
-    paths-ignore:
-      - "**.md"
-
 env:
   ROLE_NAME: christiangda.awscli
   GALAXY_ROLE_NAME: awscli
@@ -23,7 +17,7 @@ defaults:
     working-directory: "christiangda.awscli"
 
 jobs:
-  test:
+  release:
     name: "Python ${{ matrix.python }} - Ansible ${{ matrix.ansible }} - OS ${{ matrix.scenario }}"
     runs-on: ubuntu-latest
     strategy:
@@ -60,3 +54,24 @@ jobs:
       - name: Submit Ansible Galaxy Release
         run: |
           ansible-galaxy role import --api-key ${{ secrets.ANSIBLE_GALAXY_API_KEY }} --role-name $GALAXY_ROLE_NAME --branch master
+
+  create_github_release:
+    name: Create Github Release
+    needs: release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Create Release
+        id: create_github_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: |
+            See the file: CHANGELOG.md
+          draft: false
+          prerelease: false
