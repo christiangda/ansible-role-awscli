@@ -12,6 +12,10 @@
     state: present
     force: true
     update_cache: yes
+  register: package_ok
+  retries: "{{ cli_global_downloads_retries }}"
+  delay: "{{ cli_global_downloads_delay }}"
+  until: package_ok is success
   tags:
     - install
 
