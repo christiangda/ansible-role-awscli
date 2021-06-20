@@ -1,7 +1,6 @@
 # Ansible Role: christiangda.awscli
 
-[![CI](https://github.com/christiangda/ansible-role-awscli/workflows/CI/badge.svg?event=push)](https://github.com/christiangda/ansible-role-awscli/actions?query=workflow%3ACI)
-[![Develop branch workflow](https://github.com/christiangda/ansible-role-awscli/actions/workflows/develop.yaml/badge.svg?branch=master)](https://github.com/christiangda/ansible-role-awscli/actions/workflows/master.yaml)
+[![Master branch workflow](https://github.com/christiangda/ansible-role-awscli/actions/workflows/master.yaml/badge.svg?branch=master)](https://github.com/christiangda/ansible-role-awscli/actions/workflows/master.yaml)
 [![Develop branch workflow](https://github.com/christiangda/ansible-role-awscli/actions/workflows/develop.yaml/badge.svg?branch=develop)](https://github.com/christiangda/ansible-role-awscli/actions/workflows/develop.yaml)
 [![Ansible Role](https://img.shields.io/ansible/role/40514.svg)](https://galaxy.ansible.com/christiangda/awscli)
 
