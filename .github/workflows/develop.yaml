@@ -66,8 +66,8 @@ jobs:
 
       - name: Show versions
         run: |
-          molecule --version
-          ansible --version
+          ~/.local/bin/molecule --version
+          ~/.local/bin/ansible --version
           python -VV
 
       - name: Show versions
