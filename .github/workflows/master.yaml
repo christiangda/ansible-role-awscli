@@ -1,16 +1,16 @@
 ---
-name: Develop branch workflow
+name: Master branch workflow
 
 on:
   push:
     branches:
-      - develop
+      - master
     paths-ignore:
       - "**.md"
 
   pull_request:
     branches:
-      - develop
+      - master
     paths-ignore:
       - "**.md"
 
