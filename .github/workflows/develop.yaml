@@ -60,8 +60,8 @@ jobs:
           ls -la
           cd ../
           ls -la
-          mv ${{ GITHUB_ROLE_NAME }} ${{ GALAXY_ROLE_NAME }}
-          cd ${{ GALAXY_ROLE_NAME }}
+          mv ${{ env.GITHUB_ROLE_NAME }} ${{ env.GALAXY_ROLE_NAME }}
+          cd ${{ env.GALAXY_ROLE_NAME }}
           ls -la
 
       - name: Show versions
