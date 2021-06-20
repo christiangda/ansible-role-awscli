@@ -11,6 +11,7 @@
     name: "{{ cli_dependencies_packages }}"
     state: present
     force: true
+    update_cache: yes
   tags:
     - install
 
@@ -18,5 +19,6 @@
   pip:
     name: "{{ cli_package }}"
     state: present
+    executable: pip3
   tags:
     - install

@@ -6,7 +6,7 @@
   tags:
     - update-cache
 
-- name: Install "{{ cli_dependencies_packages }}" dependencies
+- name: Install cli_dependencies_packages dependencies
   apt:
     name: "{{ cli_dependencies_packages }}"
     state: present
@@ -18,5 +18,6 @@
   pip:
     name: "{{ cli_package }}"
     state: present
+    executable: pip3
   tags:
     - install
