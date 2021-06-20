@@ -3,28 +3,26 @@ galaxy_info:
   role_name: awscli
   author: Christian González Di Antonio
   description: Ansible Role for AWS Command Line Interface (awscli)
+  issue_tracker_url: https://github.com/christiangda/ansible-role-awscli
   license: license GPLv3
   company: No Company
-  min_ansible_version: 2.5
+  min_ansible_version: 2.9
 
   platforms:
     - name: EL
       versions:
-        - 6
         - 7
         - 8
     - name: Debian
       versions:
-        - buster
-        - jessie
-        - sid
         - stretch
+        - buster
+        - bullseye
     - name: Ubuntu
       version:
-        - trusty
-        - xenial
         - bionic
-        - cuttlefish
+        - focal
+        - hirsute
 
   galaxy_tags:
     - aws
