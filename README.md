@@ -179,7 +179,8 @@ cd christiangda.awscli
 
 Scenarios available:
 
-* default --> `--driver-name docker`
+* default --> `--driver-name docker` and only the latest version of OS
+* docker --> `--driver-name docker`
 * podman --> `--driver-name podman`
 * vagrant --> `--driver-name vagrant`
 
