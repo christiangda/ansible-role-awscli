@@ -1,0 +1,69 @@
+---
+name: Develop branch workflow
+
+on:
+  push:
+    branches:
+      - develop
+    paths-ignore:
+      - "**.md"
+
+  pull_request:
+    branches:
+      - develop
+    paths-ignore:
+      - "**.md"
+
+env:
+  GITHUB_ROLE_NAME: "ansible-role-awscli"
+  GALAXY_ROLE_NAME: "christiangda.awscli"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["2.x", "3.x"]
+        ansible: [">=2.9,<2.10", ">=2.10,<2.11"]
+    name: Python ${{ matrix.python }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup for python ${{ matrix.python }}
+        uses: actions/setup-python@v2
+        with:
+          python: ${{ matrix.python }}
+          architecture: x64
+
+      - name: Install ansible
+        run: |
+          python -m pip install --upgrade pip
+          pip install ansible"${{ matrix.ansible }}"
+          pip install molecule
+          pip install docker
+          pip install 'molecule[docker]'
+          pip install flake8
+          pip install selinux
+          pip install docker
+          pip install pylint
+          pip install rope
+          pip install ansible-lint
+
+      - name: Prepare repository
+        run: |
+          ls -la
+          cd ../
+          ls -la
+          mv ${{ env.GITHUB_ROLE_NAME }} ${{ env.GALAXY_ROLE_NAME }}
+          cd ${{ env.GALAXY_ROLE_NAME }}
+          ls -la
+
+      - name: Show tools versions
+        run: |
+          molecule --version
+          ansible --version
+
+      - name: Run molecule test
+        run: |
+          molecule test --scenario-name default
