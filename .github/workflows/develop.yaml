@@ -19,7 +19,8 @@ env:
   GALAXY_ROLE_NAME: christiangda.awscli
 
 jobs:
-  build:
+  test:
+    name: "Python ${{ matrix.python }}"
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -34,7 +35,11 @@ jobs:
         with:
           python: ${{ matrix.python }}
 
-      - name: Install dependencies
+      - name: Upgrade pip
+        run: |
+          python -m pip install --upgrade pip
+
+      - name: Install tools
         run: |
           python -m pip install --upgrade pip
           pip install ansible"${{ ANSIBLE_VERSION} }}"
@@ -61,6 +66,7 @@ jobs:
         run: |
           molecule --version
           ansible --version
+          python -VV
 
       - name: Show versions
         run: |
