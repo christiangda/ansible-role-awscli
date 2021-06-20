@@ -1,6 +1,6 @@
 # Ansible Role: christiangda.awscli
 
-[![Build Status](https://travis-ci.org/christiangda/ansible-role-awscli.svg?branch=master)](https://travis-ci.org/christiangda/ansible-role-awscli)
+[![CI](https://github.com/christiangda/ansible-role-awscli/workflows/CI/badge.svg?event=push)](https://github.com/christiangda/ansible-role-awscli/actions?query=workflow%3ACI)
 [![Ansible Role](https://img.shields.io/ansible/role/40514.svg)](https://galaxy.ansible.com/christiangda/awscli)
 
 This role [install AWS Command Line Interface (awscli)](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)

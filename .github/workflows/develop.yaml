@@ -15,7 +15,6 @@ on:
       - "**.md"
 
 env:
-  GITHUB_ROLE_NAME: ansible-role-awscli
   GALAXY_ROLE_NAME: christiangda.awscli
 
 jobs:
@@ -24,37 +23,19 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python: ["2.x", "3.x"]
-        ansible: [">=2.9,<2.10", ">=2.10,<2.11"]
+        python: [2.7, 3.9]
+        ansible: [">=2.9,<3.0.0", ">=3.0.0,<4.1.0", ">=4.1.0,<4.2.0"]
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Check out the codebase.
+        uses: actions/checkout@v2
+        with:
+          path: ${{ env.GALAXY_ROLE_NAME }}
 
       - name: Set up Python ${{ matrix.python }}
         uses: actions/setup-python@v2
         with:
           python: ${{ matrix.python }}
-
-      # - name: Preparing the role
-      #   run: |
-      #     ls -la
-      #     cd ../
-      #     ls -la
-      #     mv ${{ env.GITHUB_ROLE_NAME }} ${{ env.GALAXY_ROLE_NAME }}
-      #     cd ${{ env.GALAXY_ROLE_NAME }}
-      #     ls -la
-
-      - name: Preparing the role
-        run: |
-          pwd
-          ls -la
-          cd ../
-          pwd
-          ls -la
-          ln -s ${{ env.GITHUB_ROLE_NAME }} ${{ env.GALAXY_ROLE_NAME }}
-          cd ${{ env.GALAXY_ROLE_NAME }}
-          pwd
-          ls -la
 
       - name: Upgrade pip
         run: |
@@ -64,7 +45,7 @@ jobs:
         env:
           ANSIBLE_VERSION: ${{ matrix.ansible }}
         run: |
-          pip install ansible"$ANSIBLE_VERSION}"
+          pip install ansible"$ANSIBLE_VERSION"
           pip install molecule
           pip install docker
           pip install 'molecule[docker]'
