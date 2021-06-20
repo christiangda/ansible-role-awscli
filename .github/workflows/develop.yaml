@@ -17,6 +17,10 @@ on:
 env:
   GALAXY_ROLE_NAME: christiangda.awscli
 
+defaults:
+  run:
+    working-directory: ${{ env.GALAXY_ROLE_NAME }}
+
 jobs:
   test:
     name: "Python ${{ matrix.python }} - Ansible ${{ matrix.ansible }}"
