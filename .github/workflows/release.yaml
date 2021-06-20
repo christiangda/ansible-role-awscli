@@ -18,7 +18,7 @@ defaults:
 
 jobs:
   release:
-    name: "Python ${{ matrix.python }} - Ansible ${{ matrix.ansible }} - OS ${{ matrix.scenario }}"
+    name: "Python ${{ matrix.python }} - Ansible ${{ matrix.ansible }}"
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -57,7 +57,7 @@ jobs:
             --api-key ${{ secrets.ANSIBLE_GALAXY_API_KEY }} \
             --role-name $GALAXY_ROLE_NAME \
             --branch master \
-            ${{ github.repository_owner }} ${{ github.repository }}
+            ${{ github.repository_owner }} $GALAXY_ROLE_NAME
 
   create_github_release:
     name: Create Github Release
@@ -74,7 +74,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          release_name: ${{ github.ref }}
           body: |
             See the file: CHANGELOG.md
           draft: false
