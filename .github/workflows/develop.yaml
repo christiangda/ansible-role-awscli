@@ -29,6 +29,7 @@ jobs:
       matrix:
         python: [2.7, 3.9]
         ansible: [">=2.9,<3.0.0", ">=3.0.0,<4.1.0", ">=4.1.0,<4.2.0"]
+        scenario: ["centos-8", "ubuntu-21.04"]
 
     steps:
       - name: Check out the codebase.
@@ -67,6 +68,8 @@ jobs:
           ansible --version
           python -VV
 
-      - name: Run molecule
+      - name: Run molecule on ${{ matrix.scenario }}
+        env:
+          SCENARIO: ${{ matrix.scenario }}
         run: |
-          molecule test --scenario-name default
+          molecule test --scenario-name $SCENARIO

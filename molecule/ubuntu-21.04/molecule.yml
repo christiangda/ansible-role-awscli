@@ -16,5 +16,5 @@ scenario:
   name: default
 
 platforms:
-  - name: centos-8
-    image: centos:8
+  - name: ubuntu-21.04
+    image: ubuntu:21.04
