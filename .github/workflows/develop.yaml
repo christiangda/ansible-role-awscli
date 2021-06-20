@@ -23,7 +23,7 @@ defaults:
 
 jobs:
   test:
-    name: "Python ${{ matrix.python }} - Ansible ${{ matrix.ansible }}"
+    name: "Python ${{ matrix.python }} - Ansible ${{ matrix.ansible }} - OS ${{ matrix.scenario }}"
     runs-on: ubuntu-latest
     strategy:
       matrix:
