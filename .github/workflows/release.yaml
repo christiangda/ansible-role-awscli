@@ -1,0 +1,62 @@
+---
+name: Develop branch workflow
+
+on:
+  push:
+    tags:
+      - [012].[0-9]+.[0-9]+
+    paths-ignore:
+      - "**.md"
+
+  pull_request:
+    tags:
+      - [012].[0-9]+.[0-9]+
+    paths-ignore:
+      - "**.md"
+
+env:
+  ROLE_NAME: christiangda.awscli
+  GALAXY_ROLE_NAME: awscli
+
+defaults:
+  run:
+    working-directory: "christiangda.awscli"
+
+jobs:
+  test:
+    name: "Python ${{ matrix.python }} - Ansible ${{ matrix.ansible }} - OS ${{ matrix.scenario }}"
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: [3.9]
+        ansible: ["~=4.1"]
+
+    steps:
+      - name: Check out the codebase.
+        uses: actions/checkout@v2
+        with:
+          path: ${{ env.ROLE_NAME }}
+
+      - name: Set up Python ${{ matrix.python }}
+        uses: actions/setup-python@v2
+        with:
+          python: ${{ matrix.python }}
+
+      - name: Upgrade pip
+        run: |
+          python -m pip install --upgrade pip
+
+      - name: Install ansible ${{ matrix.ansible }} and dependencies
+        env:
+          ANSIBLE_VERSION: ${{ matrix.ansible }}
+        run: |
+          pip install ansible"$ANSIBLE_VERSION"
+
+      - name: Show versions
+        run: |
+          ansible --version
+          python -VV
+
+      - name: Submit Ansible Galaxy Release
+        run: |
+          ansible-galaxy role import --api-key ${{ secrets.ANSIBLE_GALAXY_API_KEY }} --role-name $GALAXY_ROLE_NAME --branch master
