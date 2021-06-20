@@ -28,7 +28,7 @@ jobs:
     strategy:
       matrix:
         python: [2.7, 3.9]
-        ansible: [">=2.9,<3.0.0", ">=3.0.0,<4.1.0", ">=4.1.0,<4.2.0"]
+        ansible: ["~=2.9", "~=3.4", "~=4.1"]
         scenario: ["centos-8", "ubuntu-21.04"]
 
     steps:
