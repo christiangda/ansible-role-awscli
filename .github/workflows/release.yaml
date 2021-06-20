@@ -53,7 +53,11 @@ jobs:
 
       - name: Submit Ansible Galaxy Release
         run: |
-          ansible-galaxy role import --api-key ${{ secrets.ANSIBLE_GALAXY_API_KEY }} --role-name $GALAXY_ROLE_NAME --branch master
+          ansible-galaxy role import \
+            --api-key ${{ secrets.ANSIBLE_GALAXY_API_KEY }} \
+            --role-name $GALAXY_ROLE_NAME \
+            --branch master \
+            ${{ github.repository_owner }} ${{ github.repository }}
 
   create_github_release:
     name: Create Github Release
