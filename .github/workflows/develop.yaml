@@ -61,14 +61,14 @@ jobs:
           ansible --version
           python -VV
 
-      - name: Preparing the role
-        run: |
-          ls -la
-          cd ../
-          ls -la
-          mv ${{ env.GITHUB_ROLE_NAME }} ${{ env.GALAXY_ROLE_NAME }}
-          cd ${{ env.GALAXY_ROLE_NAME }}
-          ls -la
+      # - name: Preparing the role
+      #   run: |
+      #     ls -la
+      #     cd ../
+      #     ls -la
+      #     mv ${{ env.GITHUB_ROLE_NAME }} ${{ env.GALAXY_ROLE_NAME }}
+      #     cd ${{ env.GALAXY_ROLE_NAME }}
+      #     ls -la
 
       - name: Show versions
         run: |
