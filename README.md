@@ -25,6 +25,7 @@ This role work on RedHat, CentOS, Debian and Ubuntu distributions
   * 7
   * 8
 * Ubuntu
+  * 16.*
   * 18.*
   * 20.*
   * 21.*

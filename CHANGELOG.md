@@ -1,5 +1,10 @@
 # VERSION
 
+## 1.0.2
+
+* added support for Ubuntu 16.04 to fix issue #5
+* added Ubuntu 16.04 to pipeline test in develop branch
+
 ## 1.0.1
 
 * fixed issue #2

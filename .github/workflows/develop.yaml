@@ -29,7 +29,7 @@ jobs:
       matrix:
         python: [2.7, 3.9]
         ansible: ["~=2.9", "~=3.4", "~=4.1"]
-        scenario: ["centos-8", "ubuntu-21.04"]
+        scenario: ["centos-8", "ubuntu-21.04", "ubuntu-16.04"]
 
     steps:
       - name: Check out the codebase.
